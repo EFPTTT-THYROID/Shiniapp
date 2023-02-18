@@ -126,7 +126,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                            tabPanel("About", 
                                     titlePanel("About the study"), 
                                     div(includeMarkdown("https://github.com/EFPTTT-THYROID/Shiniapp/raw/main/about.md"), align="justify"),
-                                    imageOutput("image1", height = "320px")
+                                    uiOutput("image1")
                            )
                             ))
 
@@ -323,17 +323,12 @@ server <- function(input, output) {
                 
               })
               # output images 
-              output$image1 <- renderImage({
-                
-                list(src = "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/Screenshot%20from%202023-02-18%2009-47-59.png",
-                     width = 850,
-                     height = 150,
-                     class = "center")
-              }, deleteFile = F)
+              output$image1 <- renderUI({
+                tags$img(src = "https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/Screenshot%20from%202023-02-18%2009-47-59.png",
+                width = "70%", height= 200, align = "center")
+              })
              
   }
 
-####################################
-# Create the shiny app             #
-####################################
+# Create the shiny app             
 shinyApp(ui = ui, server = server)
