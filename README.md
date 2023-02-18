@@ -1,1 +1,1 @@
-# Shiniapp
+# Shinyapp
