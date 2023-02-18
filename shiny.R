@@ -23,7 +23,8 @@ library(reactable)
 library(ggpubr)
 library(gghalves)
 
-traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
+urlfile<-'https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/traindata_model.tsv?token=GHSAT0AAAAAAB66ILNURVI3FNAG3LMM7MK6Y7QLJ4A'
+traindata<- read.csv(url(urlfile), sep = '\t')
 
 ui <- fluidPage(theme = shinytheme("united"),
                 
@@ -149,7 +150,8 @@ server <- function(input, output) {
                 validate(need(ext == "csv", "Please upload a csv file"))
                 test <-as.data.frame(fread(file$datapath, header = input$header))
                 #input model: traindata_rf
-                load("/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData")
+                githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
+                load(url(githubURL))
                 #output 
                 Output <- data.frame(Prediction=predict(traindata_rf,test), round(predict(traindata_rf,test,type="prob"), 3))
                 print(Output)})
@@ -161,7 +163,8 @@ server <- function(input, output) {
                   validate(need(ext == "csv", "Please upload a csv file"))
                   test <-as.data.frame(fread(file$datapath, header = input$header))
                   #input model: traindata_rf
-                  load("/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData")
+                  githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
+                  load(url(githubURL))
                   #output 
                   Output <- data.frame(Prediction=predict(traindata_rf,test), round(predict(traindata_rf,test,type="prob"), 3))
                   data = as.data.frame(melt(Output))
@@ -211,7 +214,7 @@ server <- function(input, output) {
                 testdata <- testdata()
                 req(input$file2)
                 # creat model
-                traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
+                #traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
                 traindata_rf <- randomForest(as.factor(subtype)~., data=traindata, ntree=1000, proximity=TRUE)
                 methylclass <- predict(traindata_rf, newdata=traindata)
                 rf_score <- as.data.frame(predict(traindata_rf, newdata=traindata, type="prob"))
