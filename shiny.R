@@ -23,10 +23,10 @@ library(reactable)
 library(ggpubr)
 library(gghalves)
 
-#urlfile<-'https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/traindata_model.tsv?token=GHSAT0AAAAAAB66ILNURVI3FNAG3LMM7MK6Y7QLJ4A'
-#traindata<- read.csv(url(urlfile), sep = '\t')
+urlfile<-'https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/traindata_model.tsv?token=GHSAT0AAAAAAB66ILNURVI3FNAG3LMM7MK6Y7QLJ4A'
+traindata<- read.csv(url(urlfile), sep = '\t')
 
-traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
+#traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
 
 ui <- fluidPage(theme = shinytheme("united"),
                 
@@ -125,7 +125,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                                      plotlyOutput("graph1")),
                            tabPanel("About", 
                                     titlePanel("About the study"), 
-                                    div(includeMarkdown("about.md"), align="justify"),
+                                    div(includeMarkdown("https://github.com/EFPTTT-THYROID/Shiniapp/raw/main/about.md"), align="justify"),
                                     imageOutput("image1", height = "320px")
                            )
                             ))
@@ -152,9 +152,9 @@ server <- function(input, output) {
                 validate(need(ext == "csv", "Please upload a csv file"))
                 test <-as.data.frame(fread(file$datapath, header = input$header))
                 #input model: traindata_rf
-                #githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
-                #load(url(githubURL))
-                load('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData')
+                githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
+                load(url(githubURL))
+                #load('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData')
                 #output 
                 Output <- data.frame(Prediction=predict(traindata_rf,test), round(predict(traindata_rf,test,type="prob"), 3))
                 print(Output)})
@@ -166,9 +166,9 @@ server <- function(input, output) {
                   validate(need(ext == "csv", "Please upload a csv file"))
                   test <-as.data.frame(fread(file$datapath, header = input$header))
                   #input model: traindata_rf
-                  #githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
-                  #load(url(githubURL))
-                  load('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData')
+                  githubURL <- "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/RF_model.RData?raw=true"
+                  load(url(githubURL))
+                  #load('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Result/Random_forest/RF_model.RData')
                   #output 
                   Output <- data.frame(Prediction=predict(traindata_rf,test), round(predict(traindata_rf,test,type="prob"), 3))
                   data = as.data.frame(melt(Output))
@@ -218,7 +218,8 @@ server <- function(input, output) {
                 testdata <- testdata()
                 req(input$file2)
                 # creat model
-                traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
+                urlfile<-'https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/traindata_model.tsv?token=GHSAT0AAAAAAB66ILNURVI3FNAG3LMM7MK6Y7QLJ4A'
+                traindata<- read.csv(url(urlfile), sep = '\t')
                 traindata_rf <- randomForest(as.factor(subtype)~., data=traindata, ntree=1000, proximity=TRUE)
                 methylclass <- predict(traindata_rf, newdata=traindata)
                 rf_score <- as.data.frame(predict(traindata_rf, newdata=traindata, type="prob"))
@@ -324,7 +325,7 @@ server <- function(input, output) {
               # output images 
               output$image1 <- renderImage({
                 
-                list(src = "/home/minhhoang/Pictures/Screenshot from 2023-02-18 09-47-59.png",
+                list(src = "https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/Screenshot%20from%202023-02-18%2009-47-59.png",
                      width = 850,
                      height = 150,
                      class = "center")
