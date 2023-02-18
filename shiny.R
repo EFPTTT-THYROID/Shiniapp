@@ -1,10 +1,3 @@
-####################################
-# Data Professor                   #
-# http://youtube.com/dataprofessor #
-# http://github.com/dataprofessor  #
-####################################
-
-
 # Import libraries
 library(shiny)
 library(shinythemes)
@@ -30,9 +23,6 @@ library(reactable)
 library(ggpubr)
 library(gghalves)
 
-####################################
-# User interface                   #
-####################################
 traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
 
 ui <- fluidPage(theme = shinytheme("united"),
