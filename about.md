@@ -19,7 +19,7 @@ treatment for thyroid tumor patients.
 
 1. Nguyen Minh Hoang[1]
 2. Le Van Hieu [2]
-3. Le Nhat Thong, B.A [3]
+3. Le Nhat Thong, BSc [3]
 4. Nguyen Vu Phong, PhD [4]
 5. Luu Phuc Loi, PhD [5]
 6. Nguyen Phan Xuan Truong, MD, Msc [6]
@@ -28,7 +28,7 @@ treatment for thyroid tumor patients.
 #### 
 *[1] Student of Biological Sciences faculty, Nong Lam university.*
 *[2] Student of Computer Science faculty, Hue University of Sciences*
-*[3] Student of Biotechnology faculty, International University*
+*[3] Research Center for Infectious Disease, International University - Vietnam National University at HCM city*
 *[4] Faculty of Biological Sciences, Nong Lam University*
 *[5] Epigenetics Research Laboratory, Genomics and Epigenetics Division, Garvan Institute of Medical Research, Sydney 2010, New South Wales, Australia.*
 *[6] Department of Pathology, Medical Science Program, Faculty of Medicine, Chulalongkorn University, Thai Lan.*
