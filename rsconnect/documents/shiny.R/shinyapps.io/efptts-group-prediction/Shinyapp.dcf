@@ -5,10 +5,10 @@ account: efptts-group-prediction
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8349080
-bundleId: 6860756
+bundleId: 7537061
 url: https://efptts-group-prediction.shinyapps.io/Shinyapp/
-when: 1676711802.18027
-lastSyncTime: 1676711802.1803
+when: 1691336574.70706
+lastSyncTime: 1691336574.70708
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .gitattributes|README.md
+ignoredFiles: .gitattributes|about.md|README.md|RF_model.RData|Screenshot from 2023-02-18 09-47-59.png|testdata_model.tsv|traindata_model.tsv

@@ -22,13 +22,26 @@ library(plotly)
 library(reactable)
 library(ggpubr)
 library(gghalves)
+library(curl)
 
 urlfile<-'https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/traindata_model.tsv?token=GHSAT0AAAAAAB66ILNURVI3FNAG3LMM7MK6Y7QLJ4A'
 traindata<- read.csv(url(urlfile), sep = '\t')
 
+# Function to fetch Markdown content from URL
+fetch_md_content <- function(url) {
+  h <- new_handle()
+  req <- curl_fetch_memory(url, handle = h)
+  markdown <- rawToChar(req$content)
+  return(markdown)
+}
+
+# URL of the Markdown file
+md_url <- "https://raw.githubusercontent.com/EFPTTT-THYROID/Shiniapp/main/about.md"
+
+
 #traindata <- as.data.frame(fread('/home/minhhoang/Documents/Thyroid cancer/TOTAL/Build_model/Data/traindata_model.tsv'))
 
-ui <- fluidPage(theme = shinytheme("united"),
+ui <- fluidPage(theme = shinytheme("spacelab"),
                 
                 navbarPage("EFPTT Prediction",
                            
@@ -125,7 +138,8 @@ ui <- fluidPage(theme = shinytheme("united"),
                                      plotlyOutput("graph1")),
                            tabPanel("About", 
                                     titlePanel("About the study"), 
-                                    div(includeMarkdown("https://github.com/EFPTTT-THYROID/Shiniapp/raw/main/about.md"), align="justify"),
+                                    # div(includeMarkdown("https://github.com/EFPTTT-THYROID/Shiniapp/blob/main/about.md"), align="justify"),
+                                    HTML(markdown::markdownToHTML(fetch_md_content(md_url))),
                                     uiOutput("image1")
                            )
                             ))
